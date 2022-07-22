@@ -3,8 +3,18 @@ stages:
   - test
   - deploy
 
+workflow:
+  rules:
+    - if: $CI_COMMIT_MESSAGE == /^A6RC:/
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
 build-job:
   stage: build
+  before_script:
+    - echo "The commit branch is $CI_COMMIT_BRANCH."
+    - echo "The pipeline source is $CI_PIPELINE_SOURCE."
+    - echo "The commit message is $CI_COMMIT_MESSAGE."
   script:
     - echo "Hello, $GITLAB_USER_LOGIN!"
 
