@@ -20,8 +20,8 @@ build-job:
   script:
     - echo "Hello, $GITLAB_USER_LOGIN!"
     - ls -a
-    - git clone git@gitlab.ayla.com.cn:ruixiang.huang/darkerb_cicd_lab.git
-    - cd darkerb_cicd_lab
+    - cd sub_repo/Darkerb_Test_CICD
+    - ls -a
     - make
     - ./main
     - make clean
