@@ -17,6 +17,7 @@ build-job:
     - echo "The commit message is $CI_COMMIT_MESSAGE."
   script:
     - echo "Hello, $GITLAB_USER_LOGIN!"
+    - ls -a
 
 test-job1:
   stage: test
