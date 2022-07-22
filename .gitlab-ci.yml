@@ -21,9 +21,11 @@ build-job:
     - apt install -y make git
   script:
     - echo "Hello, $GITLAB_USER_LOGIN!"
+    - git submodule update
     - ls -a
     - cd sub_repo/Darkerb_Test_CICD
     - ls -a
+    - cd ../../
     - make
     - ./main
     - make clean
