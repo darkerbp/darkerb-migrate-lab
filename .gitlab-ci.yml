@@ -17,6 +17,8 @@ build-job:
     - echo "The pipeline source is $CI_PIPELINE_SOURCE."
     - echo "The commit message is $CI_COMMIT_MESSAGE."
     - echo "target branch is $CI_MERGE_REQUEST_TARGET_BRANCH_NAME."
+    - apt update
+    - apt install make git
   script:
     - echo "Hello, $GITLAB_USER_LOGIN!"
     - ls -a
