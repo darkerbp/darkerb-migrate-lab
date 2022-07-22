@@ -1,0 +1,3 @@
+[submodule "sub_repo/Darkerb_Test_CICD"]
+	path = sub_repo/Darkerb_Test_CICD
+	url = git@github.com:darkerbp/Darkerb_Test_CICD.git
