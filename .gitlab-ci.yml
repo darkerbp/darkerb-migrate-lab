@@ -9,6 +9,9 @@ workflow:
 
 default:
   image: ubuntu:20.04
+
+build-job:
+  stage: build
   before_script:
     - echo "The commit title is $CI_COMMIT_TITLE."
     - echo "The pipeline source is $CI_PIPELINE_SOURCE."
@@ -46,15 +49,6 @@ default:
     ##
     # - git config --global user.email "user@example.com"
     # - git config --global user.name "User name"
-
-build-job:
-  stage: build
-  before_script:
-    - echo "The commit title is $CI_COMMIT_TITLE."
-    - echo "The pipeline source is $CI_PIPELINE_SOURCE."
-    - echo "The commit message is $CI_COMMIT_MESSAGE."
-    - echo "target branch is $CI_MERGE_REQUEST_TARGET_BRANCH_NAME."
-    - echo "$SSH_PRIVATE_KEY"
     - export
     - echo "end of the export"
     - apt update
@@ -63,6 +57,7 @@ build-job:
     - echo "Hello, $GITLAB_USER_LOGIN!"
     - ls -a
     - cd sub_repo/Darkerb_Test_CICD
+    - git submodule update --init --recursive
     - ls -a
     - cd ../../
     - pwd
