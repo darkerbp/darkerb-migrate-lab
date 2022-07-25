@@ -5,13 +5,10 @@ stages:
 
 workflow:
   rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH && $CI_COMMIT_TITLE =~ /^A6RC */
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH && $CI_MERGE_REQUEST_TITLE =~ /^A6RC */
 
 default:
   image: ubuntu:20.04
-
-build-job:
-  stage: build
   before_script:
     - echo "The commit title is $CI_COMMIT_TITLE."
     - echo "The pipeline source is $CI_PIPELINE_SOURCE."
@@ -49,6 +46,15 @@ build-job:
     ##
     # - git config --global user.email "user@example.com"
     # - git config --global user.name "User name"
+
+build-job:
+  stage: build
+  before_script:
+    - echo "The commit title is $CI_COMMIT_TITLE."
+    - echo "The pipeline source is $CI_PIPELINE_SOURCE."
+    - echo "The commit message is $CI_COMMIT_MESSAGE."
+    - echo "target branch is $CI_MERGE_REQUEST_TARGET_BRANCH_NAME."
+    - echo "$SSH_PRIVATE_KEY"
     - export
     - echo "end of the export"
     - apt update
