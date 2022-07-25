@@ -47,7 +47,6 @@ build-job:
     - ssh-keyscan $VM_IPADDRESS >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
     - ls -la ~/.ssh
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' |
 
     - export
     - echo "end of the export"
