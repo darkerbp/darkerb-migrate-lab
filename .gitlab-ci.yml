@@ -12,6 +12,8 @@ default:
 
 build-job:
   stage: build
+  variables:
+    VM_IPADDRESS: github.com
   before_script:
     - echo "The commit title is $CI_COMMIT_TITLE."
     - echo "The pipeline source is $CI_PIPELINE_SOURCE."
@@ -42,23 +44,26 @@ build-job:
     ##
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
+    - ssh-keyscan $VM_IPADDRESS >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
     - ls -la ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' |
 
     - export
     - echo "end of the export"
     - apt update
     - apt install -y git
-  script:
-    - echo "Hello, $GITLAB_USER_LOGIN!"
-    - ls -a
-    - git clone git@github.com:darkerbp/Darkerb_Test_CICD.git sub_repo/Darkerb_Test_CICD
-    - git submodule update --init --recursive
     ##
     ## Optionally, if you will be using any Git commands, set the user name and
     ## and email.
     ##
     - git config --global user.email "ruixiang.huang@aylaasia.com"
     - git config --global user.name "darkerb"
+  script:
+    - echo "Hello, $GITLAB_USER_LOGIN!"
+    - ls -a
+    - git clone git@github.com:darkerbp/Darkerb_Test_CICD.git sub_repo/Darkerb_Test_CICD
+    - git submodule update --init --recursive
     - cd sub_repo/Darkerb_Test_CICD
     - ls -a
     - cd ../../
