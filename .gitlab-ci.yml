@@ -3,9 +3,12 @@ stages:
   - test
   - deploy
 
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
 workflow:
   rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH && $CI_COMMIT_TITLE =~ /^A6RC*/
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH && $CI_COMMIT_TITLE =~ /^A6RC */
 
 default:
   image: ubuntu:20.04
@@ -23,7 +26,7 @@ build-job:
     - apt install -y git
   script:
     - echo "Hello, $GITLAB_USER_LOGIN!"
-    - git submodule update
+    - git submodule update --init --recursive
     - ls -a
     - cd sub_repo/Darkerb_Test_CICD
     - ls -a
