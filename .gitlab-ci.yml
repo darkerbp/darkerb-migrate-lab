@@ -44,12 +44,6 @@ build-job:
     - chmod 700 ~/.ssh
     - ls -la ~/.ssh
 
-    ##
-    ## Optionally, if you will be using any Git commands, set the user name and
-    ## and email.
-    ##
-    ## - git config --global user.email "ruixiang.huang@aylaasia.com"
-    ## - git config --global user.name "darkerb"
     - export
     - echo "end of the export"
     - apt update
@@ -57,7 +51,14 @@ build-job:
   script:
     - echo "Hello, $GITLAB_USER_LOGIN!"
     - ls -a
+    - git clone git@github.com:darkerbp/Darkerb_Test_CICD.git sub_repo/Darkerb_Test_CICD
     - git submodule update --init --recursive
+    ##
+    ## Optionally, if you will be using any Git commands, set the user name and
+    ## and email.
+    ##
+    - git config --global user.email "ruixiang.huang@aylaasia.com"
+    - git config --global user.name "darkerb"
     - cd sub_repo/Darkerb_Test_CICD
     - ls -a
     - cd ../../
