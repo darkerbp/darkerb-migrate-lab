@@ -18,6 +18,7 @@ build-job:
     - echo "The commit message is $CI_COMMIT_MESSAGE."
     - echo "target branch is $CI_MERGE_REQUEST_TARGET_BRANCH_NAME."
     - export
+    - echo "end of the export"
     - apt update
     - apt install -y git
   script:
