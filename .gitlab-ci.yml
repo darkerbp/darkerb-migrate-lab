@@ -42,13 +42,14 @@ build-job:
     ##
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
+    - ls -la ~/.ssh
 
     ##
     ## Optionally, if you will be using any Git commands, set the user name and
     ## and email.
     ##
-    # - git config --global user.email "user@example.com"
-    # - git config --global user.name "User name"
+    - git config --global user.email "ruixiang.huang@aylaasia.com"
+    - git config --global user.name "darkerb"
     - export
     - echo "end of the export"
     - apt update
