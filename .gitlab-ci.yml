@@ -49,8 +49,6 @@ default:
 
 build-job:
   stage: build
-  variables:
-    GIT_SUBMODULE_STRATEGY: recursive
   before_script:
     - echo "The commit title is $CI_COMMIT_TITLE."
     - echo "The pipeline source is $CI_PIPELINE_SOURCE."
