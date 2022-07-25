@@ -28,9 +28,7 @@ build-job:
     - cd sub_repo/Darkerb_Test_CICD
     - ls -a
     - cd ../../
-    - ls -a
-    - cd ../
-    - ls
+    - pwd
 
 test-job1:
   stage: test
