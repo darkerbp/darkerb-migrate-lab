@@ -29,6 +29,8 @@ build-job:
     - ls -a
     - cd ../../
     - pwd
+    - cd /
+    - pwd
 
 test-job1:
   stage: test
