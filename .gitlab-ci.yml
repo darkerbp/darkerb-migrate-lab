@@ -8,7 +8,7 @@ workflow:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH && $CI_MERGE_REQUEST_TITLE =~ /^A6RC */
 
 default:
-  image: ubuntu:20.04
+  image: ubuntu:cicd
 
 build-job:
   stage: build
@@ -50,8 +50,6 @@ build-job:
 
     - export
     - echo "end of the export"
-    - apt update
-    - apt install -y git
     ##
     ## Optionally, if you will be using any Git commands, set the user name and
     ## and email.
