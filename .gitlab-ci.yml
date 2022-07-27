@@ -57,7 +57,7 @@ pre_project:
     - echo "end of the export"
     - pwd
     - ls -a
-    - mv /root/$CI_PROJECT_NAME/ .
+    - mv /root/$CI_PROJECT_NAME/* .
     - ls -a
     - git submodule update --init --recursive
     - cd sub_repo/Darkerb_Test_CICD
