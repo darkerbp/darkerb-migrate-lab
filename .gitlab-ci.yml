@@ -75,6 +75,9 @@ build_test1:
     - cd /root/$CI_PROJECT_NAME
     - make clean
     - make
+  artifacts:
+    paths:
+      - .main
 
 build_test2:
   stage: build
