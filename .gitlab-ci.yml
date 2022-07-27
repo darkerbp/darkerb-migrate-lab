@@ -74,6 +74,7 @@ build_test1:
     - pwd
     - cd /root/$CI_PROJECT_NAME
     - make
+    - cp -r build/ /builds/ruixiang.huang/$CI_PROJECT_NAME
   artifacts:
     paths:
       - build/
