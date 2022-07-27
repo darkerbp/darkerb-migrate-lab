@@ -8,7 +8,7 @@ workflow:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH && $CI_MERGE_REQUEST_TITLE =~ /^A6RC */
 
 default:
-  image: 0576206ea3d5
+  image: ubuntu:cicd
 
 build-job:
   stage: build
