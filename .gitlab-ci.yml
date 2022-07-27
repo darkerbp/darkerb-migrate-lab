@@ -9,11 +9,13 @@ workflow:
 
 default:
   image: ubuntu:cicd
+  tags: tagD
 
 build-job:
   stage: build
   variables:
     VM_IPADDRESS: github.com
+    GIT_STRATEGY: none
   before_script:
     - echo "The commit title is $CI_COMMIT_TITLE."
     - echo "The pipeline source is $CI_PIPELINE_SOURCE."
