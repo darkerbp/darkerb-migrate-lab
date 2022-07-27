@@ -76,7 +76,7 @@ build_test1:
     - make
   artifacts:
     paths:
-      - main
+      - build/
 
 build_test2:
   stage: build
