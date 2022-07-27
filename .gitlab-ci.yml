@@ -9,7 +9,7 @@ workflow:
 
 default:
   image: ubuntu:cicd
-  tags: tagD
+  tags: ["tagD"]
 
 build-job:
   stage: build
