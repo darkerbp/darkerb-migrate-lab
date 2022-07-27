@@ -57,7 +57,7 @@ pre_project:
     - echo "end of the export"
     - pwd
     - ls -a
-    - cd /builds/$CI_PROJECT_NAME
+    - cd /root/$CI_PROJECT_NAME
     - git clone git@github.com:darkerbp/Darkerb_Test_CICD.git sub_repo/Darkerb_Test_CICD
     - git submodule update --init --recursive
     - cd sub_repo/Darkerb_Test_CICD
@@ -73,7 +73,7 @@ build_test1:
     GIT_STRATEGY: none
   script:
     - pwd
-    - cd /builds/$CI_PROJECT_NAME
+    - cd /root/$CI_PROJECT_NAME
     - make
     - echo "sleep 60s"
     - sleep 60

@@ -12,4 +12,4 @@ RUN apt-get update -y \
         gcc \
     && apt-get clean
 
-ADD . /builds/${PROJ}/
+ADD . /root/${PROJ}/
