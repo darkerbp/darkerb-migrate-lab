@@ -57,7 +57,8 @@ pre_project:
     - echo "end of the export"
     - pwd
     - ls -a
-    - cd /root/$CI_PROJECT_NAME
+    - mv /root/$CI_PROJECT_NAME/ .
+    - ls -a
     - git submodule update --init --recursive
     - cd sub_repo/Darkerb_Test_CICD
     - ls -a
@@ -72,9 +73,7 @@ build_test1:
     GIT_STRATEGY: none
   script:
     - pwd
-    - cd /root/$CI_PROJECT_NAME
     - make
-    - cp -r build/ /builds/ruixiang.huang/$CI_PROJECT_NAME
   artifacts:
     paths:
       - build/
@@ -90,5 +89,4 @@ deploy-prod:
     GIT_STRATEGY: none
   script:
     - pwd
-    - cd /root/$CI_PROJECT_NAME
     - ./main
