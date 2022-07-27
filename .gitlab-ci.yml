@@ -58,7 +58,6 @@ pre_project:
     - pwd
     - ls -a
     - cd /root/$CI_PROJECT_NAME
-    - git clone git@github.com:darkerbp/Darkerb_Test_CICD.git sub_repo/Darkerb_Test_CICD
     - git submodule update --init --recursive
     - cd sub_repo/Darkerb_Test_CICD
     - ls -a
