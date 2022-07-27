@@ -75,17 +75,17 @@ build_test1:
     - cd /root/$CI_PROJECT_NAME
     - make clean
     - make
-    - echo "sleep 60s"
-    - sleep 60
 
 build_test2:
   stage: build
   script:
     - pwd
-    - echo "sleep 40s"
-    - sleep 40
 
 deploy-prod:
   stage: deploy
+  variables:
+    GIT_STRATEGY: none
   script:
-    - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
+    - pwd
+    - cd /root/$CI_PROJECT_NAME
+    - ./main
