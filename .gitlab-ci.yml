@@ -19,7 +19,7 @@ default:
     - tagD
 
 .ssh_agent_setup: &ssh_agent_setup
-  ##
+    ##
     ## Install ssh-agent if not already installed, it is required by Docker.
     ## (change apt-get to yum if you use an RPM-based image)
     ##
@@ -69,6 +69,7 @@ pre_project:
     - ls -a
     - cd $PROJ_ROOT_DIR
     - ls -a
+    - rm -rf sub_repo/Darkerb_Test_CICD
     - git submodule update --init --recursive
     - cd sub_repo/Darkerb_Test_CICD
     - ls -a
