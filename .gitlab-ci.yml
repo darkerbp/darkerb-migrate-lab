@@ -108,3 +108,4 @@ deploy-prod:
     - pwd
     - cd build
     - ./main
+    - echo "END"
