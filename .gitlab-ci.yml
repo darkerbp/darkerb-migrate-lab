@@ -7,9 +7,15 @@ workflow:
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH && $CI_MERGE_REQUEST_TITLE =~ /^A6RC */
 
+variables:
+    PROJ_ROOT_DIR: /root/$CI_PROJECT_NAME
+    PROJ_BUILD_DIR: $PROJ_ROOT_DIR/build
+    GITLAB_BUILDS_DIR: /builds/$GITLAB_USER_NAME/$CI_PROJECT_NAME
+
 default:
   image: ubuntu:cicd
-  tags: ["tagD"]
+  tags:
+    - tagD
 
 pre_project:
   stage: prerequisite
@@ -51,20 +57,19 @@ pre_project:
     ##
     - git config --global user.email "ruixiang.huang@aylaasia.com"
     - git config --global user.name "darkerb"
+    - ssh -T git@github.com
   script:
     - echo "Hello, $GITLAB_USER_LOGIN!"
     - export
     - echo "end of the export"
     - pwd
     - ls -a
-    - mv /root/$CI_PROJECT_NAME/* /root/$CI_PROJECT_NAME/.[^.]* .
+    - cd $PROJ_ROOT_DIR
     - ls -a
     - git submodule update --init --recursive
     - cd sub_repo/Darkerb_Test_CICD
     - ls -a
     - cd ../../
-    - pwd
-    - cd /
     - pwd
 
 build_test1:
@@ -72,8 +77,16 @@ build_test1:
   variables:
     GIT_STRATEGY: none
   script:
+    - ssh -T git@github.com
     - pwd
+    - cd $PROJ_ROOT_DIR
+    - git status
     - make
+    - cp build $GITLAB_BUILDS_DIR
+    - cd /sub_repo/Darkerb_Test_CICD
+    - ls -a
+    - cd $GITLAB_BUILDS_DIR/build
+    - ls -a
   artifacts:
     paths:
       - build/
@@ -89,4 +102,5 @@ deploy-prod:
     GIT_STRATEGY: none
   script:
     - pwd
+    - cd build
     - ./main
