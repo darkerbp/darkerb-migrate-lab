@@ -11,7 +11,8 @@ variables: &global-variables
     PROJ_ROOT_DIR: /root/$CI_PROJECT_NAME
     PROJ_BUILD_DIR: /root/$CI_PROJECT_NAME/build
     GITLAB_BUILDS_DIR: /builds/$GITLAB_USER_NAME/$CI_PROJECT_NAME
-    VM_IPADDRESS: github.com
+    VM_GITHUB_IPADDRESS: github.com
+    VM_GITLAB_IPADDRESS: gitlab.ayla.com.cn
 
 default:
   image: ubuntu:cicd
@@ -43,7 +44,8 @@ default:
     ##
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
-    - ssh-keyscan $VM_IPADDRESS >> ~/.ssh/known_hosts
+    - ssh-keyscan $VM_GITHUB_IPADDRESS >> ~/.ssh/known_hosts
+    - ssh-keyscan $VM_GITLAB_IPADDRESS >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
 
     ##
@@ -87,8 +89,8 @@ build_test1:
   script:
     - pwd
     - cd $PROJ_ROOT_DIR
-    #- git checkout $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
-    #- git pull origin $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
+    - git checkout $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
+    - git pull origin $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
     - ls -a
     - ls -la sub_repo/
     - ls -la sub_repo/Darkerb_Test_CICD
