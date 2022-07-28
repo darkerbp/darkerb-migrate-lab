@@ -70,10 +70,10 @@ pre_project:
     - cd $PROJ_ROOT_DIR
     - ls -a
     - rm -rf sub_repo/Darkerb_Test_CICD
-    - git submodule update --init --recursive
-    - cd sub_repo/Darkerb_Test_CICD
-    - ls -a
-    - cd ../../
+    # - git submodule update --init --recursive
+    # - cd sub_repo/Darkerb_Test_CICD
+    # - ls -a
+    # - cd ../../
     - pwd
 
 build_test1:
@@ -82,12 +82,16 @@ build_test1:
     <<: *global-variables
     GIT_STRATEGY: none
   before_script:
+    - echo "$SSH_PRIVATE_KEY"
     - *ssh_agent_setup
   script:
     - pwd
     - cd $PROJ_ROOT_DIR
-    - git checkout $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
-    - git pull origin $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
+    #- git checkout $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
+    #- git pull origin $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
+    - ls -a
+    - ls -la sub_repo/
+    - ls -la sub_repo/Darkerb_Test_CICD
     - git submodule update --init --recursive
     - make
     - cp -r build $GITLAB_BUILDS_DIR
