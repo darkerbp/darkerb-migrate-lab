@@ -80,15 +80,13 @@ build_test1:
   variables:
     <<: *global-variables
     GIT_STRATEGY: none
-  before_script:
-    - *ssh_agent_setup
   script:
     - pwd
     - cd $PROJ_ROOT_DIR
     - git submodule update --init --recursive
     - make
     - cp -r build $GITLAB_BUILDS_DIR
-    - cd /sub_repo/Darkerb_Test_CICD
+    - cd sub_repo/Darkerb_Test_CICD
     - ls -a
     - cd $GITLAB_BUILDS_DIR/build
     - ls -a
