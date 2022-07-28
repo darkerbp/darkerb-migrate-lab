@@ -57,7 +57,6 @@ pre_project:
     ##
     - git config --global user.email "ruixiang.huang@aylaasia.com"
     - git config --global user.name "darkerb"
-    - ssh -T git@github.com
   script:
     - echo "Hello, $GITLAB_USER_LOGIN!"
     - export
@@ -77,7 +76,6 @@ build_test1:
   variables:
     GIT_STRATEGY: none
   script:
-    - ssh -T git@github.com
     - pwd
     - cd $PROJ_ROOT_DIR
     - git status
