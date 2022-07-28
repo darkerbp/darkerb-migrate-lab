@@ -9,7 +9,7 @@ workflow:
 
 variables:
     PROJ_ROOT_DIR: /root/$CI_PROJECT_NAME
-    PROJ_BUILD_DIR: $PROJ_ROOT_DIR/build
+    PROJ_BUILD_DIR: /root/$CI_PROJECT_NAME/build
     GITLAB_BUILDS_DIR: /builds/$GITLAB_USER_NAME/$CI_PROJECT_NAME
 
 default:
@@ -78,9 +78,9 @@ build_test1:
   script:
     - pwd
     - cd $PROJ_ROOT_DIR
-    - git status
+    - git submodule update --init --recursive
     - make
-    - cp build $GITLAB_BUILDS_DIR
+    - cp -r build $GITLAB_BUILDS_DIR
     - cd /sub_repo/Darkerb_Test_CICD
     - ls -a
     - cd $GITLAB_BUILDS_DIR/build
