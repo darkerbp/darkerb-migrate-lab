@@ -1,0 +1,15 @@
+FROM ubuntu:20.04
+
+ARG PROJ=darkerb_cicd_lab
+
+ENV PROJ=${PROJ}
+
+RUN apt-get update -y \
+    && apt-get install -y \
+        git \
+        openssh-client \
+        make \
+        gcc \
+    && apt-get clean
+
+ADD . /root/${PROJ}/
